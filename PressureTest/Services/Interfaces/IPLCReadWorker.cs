@@ -13,5 +13,6 @@ namespace PressureTest.Services.Interfaces
         void Stop();
         void Pause();
         Action<PLCRegisterData>? OnDataReceived { get; set; } 
+        Action<string>? OnErrorRaised { get; set; } 
     }
 }

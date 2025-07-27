@@ -1,0 +1,51 @@
+{
+  "ChartImagePath": "84406c35-4fdf-4a69-9c81-e3b72699aa18.png",
+  "RegisterValues": [
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D110",
+      "RegisterArea": "D",
+      "RegisterValue": 100
+    }
+  ],
+  "HeaderLogo": null
+}

@@ -46,6 +46,7 @@
             menuStrip1 = new MenuStrip();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             cOMSettingToolStripMenuItem = new ToolStripMenuItem();
+            LabelError = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGV_Exported).BeginInit();
@@ -166,6 +167,7 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(LabelError);
             panel4.Controls.Add(button2);
             panel4.Controls.Add(button3);
             panel4.Controls.Add(button1);
@@ -253,6 +255,15 @@
             cOMSettingToolStripMenuItem.Text = "COM Setting";
             cOMSettingToolStripMenuItem.Click += cOMSettingToolStripMenuItem_Click;
             // 
+            // LabelError
+            // 
+            LabelError.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            LabelError.BackColor = Color.White;
+            LabelError.Location = new Point(523, 946);
+            LabelError.Name = "LabelError";
+            LabelError.Size = new Size(1045, 60);
+            LabelError.TabIndex = 4;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -298,5 +309,6 @@
         private Panel panel1;
         private Panel panel5;
         private Button button4;
+        private Label LabelError;
     }
 }

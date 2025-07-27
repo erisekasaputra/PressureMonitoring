@@ -1,8 +1,11 @@
+using HslCommunication.Core.IMessage;
 using PressureTest.Domains;
 using PressureTest.Services.Interfaces;
 using ScottPlot;
 using ScottPlot.AxisPanels;
 using ScottPlot.Plottables;
+using System.IO.Ports;
+using System.Net;
 using System.Text.Json;
 using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -23,19 +26,23 @@ namespace PressureTest
         private FileSystemWatcher? watcher;
         private readonly string targetFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Values");
 
+        private bool _hasError = false;
+        private string _errorMessage = string.Empty;
+
 
         public Form1(IPLCReadWorker plcWorker, IModbusService modbusService)
         {
             InitializeComponent();
             _plcWorker = plcWorker;
             _plcWorker.OnDataReceived = OnPLCDataReceived;
+            _plcWorker.OnErrorRaised = OnErrorRaised;
             _modbusService = modbusService;
 
 
             _plcWorker.Stop();
             SetStateMonitoring(MonitoringState.Default);
 
-            ChartSensor.Plot.XLabel("Time (Miliseconds)");
+            ChartSensor.Plot.XLabel("Time (Milliseconds)");
             ChartSensor.Plot.YLabel("Pressure (Bar)");
             ChartSensor.Refresh();
 
@@ -76,21 +83,49 @@ namespace PressureTest
                 {
                     Invoke(new Action(() => OnPLCDataReceived(data)));
                     return;
-                }
+                } 
 
-
-                // Ambil nilai tekanan dari data (ubah sesuai properti PLCRegisterData kamu)
-                double tekanan = data.RegisterValue; // Sesuaikan nama properti ini  
-                Logger1.Add(tekanan);
+                double value = ConvertFromPsiToBar(data.RegisterValue);  
+                Logger1.Add(value);
                 _registerDatas.Add(data);
-                LabelPressureValue.Text = $"{tekanan} Bar";
-            }
-            catch (Exception)
-            {
+                LabelPressureValue.Text = $"{value:F2} Bar";
 
+                ResetError();
+            }
+            catch (Exception ex)
+            {
+                SetError(ex.Message, ex.InnerException?.Message ?? string.Empty);
             }
         }
 
+        private static double ConvertFromPsiToBar(double psi)
+        {
+            return psi * 0.0689476;
+        }
+
+        private void SetError(string message, string innerMessage = "")
+        {
+            LabelError.Text = $"{message} {(string.IsNullOrEmpty(innerMessage) ? "" : $"[{innerMessage}]")}";
+            LabelError.ForeColor = System.Drawing.Color.Red;
+        }
+
+        private void ResetError()
+        {
+            LabelError.Text = $"";
+            LabelError.ForeColor = System.Drawing.Color.Black;
+        }
+
+        private void OnErrorRaised(string errorMessage)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(() => OnErrorRaised(errorMessage)));
+                return;
+            }
+
+
+            SetError(errorMessage);
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -126,16 +161,41 @@ namespace PressureTest
 
             if (state is MonitoringState.Running)
             {
-                _startTime = DateTime.Now;
-                //_modbusService.Configure("3", 38400, Parity.Even, 8, StopBits.One, 1);
-                _plcWorker.Start();
-                button1.Enabled = false;
-                button2.Enabled = true;
-                button3.Enabled = true;
+                var address = Properties.Settings.Default.COM_ADDRESS.Trim();
+                try
+                { 
+                    if (string.IsNullOrEmpty(address))
+                    {
+                        var formComSetting = new FormCOMSetting();
+                        formComSetting.ShowDialog();
+                        return;
+                    }
+
+                    _startTime = DateTime.Now;
+                    _modbusService.Configure(address, 38400, Parity.Even, 7, StopBits.One);
+                    _plcWorker.Start();
+
+                    button1.Enabled = false;
+                    button2.Enabled = true;
+                    button3.Enabled = true;
+                }
+                catch (IOException) // Wrong port address
+                {
+                    MessageBox.Show($"Could not open port {address}");
+                }
+                catch (InvalidOperationException) // e.g Open when it is already opened
+                {
+                    MessageBox.Show($"Could not open port {address}");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show($"Could not open port {address}");
+                }
             }
             else if (state is MonitoringState.Stop)
             {
                 _plcWorker.Stop();
+                _modbusService.Stop();
                 button1.Enabled = true;
                 button2.Enabled = false;
                 button3.Enabled = false;
@@ -143,6 +203,7 @@ namespace PressureTest
             else if (state is MonitoringState.Pause)
             {
                 _plcWorker.Pause();
+                _modbusService.Pause();
                 button1.Enabled = true;
                 button2.Enabled = false;
                 button3.Enabled = true;
@@ -173,10 +234,7 @@ namespace PressureTest
         private void SaveSensorData()
         {
             string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            Plot plot = ChartSensor.Plot;
-
-
-
+            Plot plot = ChartSensor.Plot; 
 
 
             string plotFolder = Path.Combine(baseDir, "Plots");
@@ -214,6 +272,7 @@ namespace PressureTest
             SetStateMonitoring(MonitoringState.Stop);
             SaveSensorData();
             ResetMonitoring();
+            ResetError();
         }
 
 
