@@ -43,7 +43,7 @@ namespace PressureTest
                     _exportData = exportData;
 
                 }
-                catch (Exception ex) 
+                catch (Exception) 
                 { 
                     this.Close();
                     MessageBox.Show("Invalid data format", "Warning");
