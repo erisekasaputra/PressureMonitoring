@@ -8,6 +8,7 @@ namespace PressureTest.Domains
 {
     public enum MonitoringState
     {
+        Resume,
         Default,
         Running,
         Pause,

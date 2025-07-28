@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PressureTest
 {
@@ -122,12 +123,12 @@ namespace PressureTest
                         string value = string.Empty;
 
                         // Ambil nama dari TextBox saja
-                        if (nameControl is TextBox nameTb && !string.IsNullOrWhiteSpace(nameTb.Text))
+                        if (nameControl is System.Windows.Forms.TextBox nameTb && !string.IsNullOrWhiteSpace(nameTb.Text))
                         {
                             name = nameTb.Text.Trim();
 
                             // Value bisa dari TextBox atau DateTimePicker
-                            if (valueControl is TextBox valueTb)
+                            if (valueControl is System.Windows.Forms.TextBox valueTb)
                             {
                                 value = valueTb.Text.Trim();
                             }
@@ -145,7 +146,7 @@ namespace PressureTest
                 }
             }
 
-             
+
 
 
             var document = new ReportDocument(
@@ -215,6 +216,24 @@ namespace PressureTest
         private void ExportOptions_Load(object sender, EventArgs e)
         {
             CB_Section_1.Checked = true;
+        }
+
+        private void Txt_PropertyValue_S1_7_Enter(object sender, EventArgs e)
+        {
+            if (Txt_PropertyValue_S1_7.Text.EndsWith("°C"))
+            {
+                Txt_PropertyValue_S1_7.Text = Txt_PropertyValue_S1_7.Text.Replace("°C", "").Trim();
+            }
+        }
+
+        private void Txt_PropertyValue_S1_7_Leave(object sender, EventArgs e)
+        {
+            string text = Txt_PropertyValue_S1_7.Text.Trim().Replace("°C", "").Trim();
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                Txt_PropertyValue_S1_7.Text = text + " °C";
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.Design.AxImporter;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace PressureTest
 {
@@ -27,7 +28,8 @@ namespace PressureTest
         private readonly string targetFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Values");
 
         private bool _hasError = false;
-        private string _errorMessage = string.Empty; 
+        private string _errorMessage = string.Empty;
+        private bool isPaused = false;
 
         public Form1(IPLCReadWorker plcWorker, IModbusService modbusService)
         {
@@ -43,6 +45,7 @@ namespace PressureTest
 
             ChartSensor.Plot.XLabel("Time (Minutes)");
             ChartSensor.Plot.YLabel("Pressure (psi)");
+           
             ChartSensor.Refresh();
 
             // disable interactivity by default
@@ -55,7 +58,32 @@ namespace PressureTest
             LeftAxis axis1 = (LeftAxis)ChartSensor.Plot.Axes.Left;
             Logger1.Axes.YAxis = axis1;
             axis1.Color(Logger1.Color);
+          
             Logger1.LineWidth = 2;
+            
+            ChartSensor.Plot.Grid.XAxisStyle.IsVisible = false;
+            ChartSensor.Plot.Grid.YAxisStyle.IsVisible = false;
+
+
+            ScottPlot.TickGenerators.NumericAutomatic tickGenX = new();
+            tickGenX.TickDensity = 0.2;
+            ChartSensor.Plot.Axes.Bottom.TickGenerator = tickGenX;
+
+            ScottPlot.TickGenerators.NumericAutomatic tickGenY = new();
+            tickGenY.TickDensity = 0.5;
+            ChartSensor.Plot.Axes.Left.TickGenerator = tickGenY;
+
+
+            ChartSensor.Plot.Axes.Left.TickLabelStyle.FontSize = 30;
+            ChartSensor.Plot.Axes.Right.TickLabelStyle.FontSize = 30;
+            ChartSensor.Plot.Axes.Bottom.TickLabelStyle.FontSize = 30;
+
+            ChartSensor.Plot.Axes.Left.Label.FontSize = 30;
+            ChartSensor.Plot.Axes.Bottom.Label.FontSize = 30;
+            ChartSensor.Plot.Axes.Right.Label.FontSize = 30;
+
+
+
 
             ResetMonitoring();
 
@@ -130,8 +158,8 @@ namespace PressureTest
         private void button1_Click(object sender, EventArgs e)
         {
             try
-            {
-                SetStateMonitoring(MonitoringState.Running);
+            { 
+                SetStateMonitoring(isPaused ? MonitoringState.Resume : MonitoringState.Running);
             }
             catch (Exception ex)
             {
@@ -146,6 +174,7 @@ namespace PressureTest
             try
             {
                 SetStateMonitoring(MonitoringState.Pause);
+                isPaused = true;
             }
             catch (Exception ex)
             {
@@ -159,9 +188,13 @@ namespace PressureTest
         {
             _monitoringState = state;
 
-            if (state is MonitoringState.Running)
+            if (state is MonitoringState.Running or MonitoringState.Resume)
             {
-                _startTime = DateTime.Now;
+                if (state is MonitoringState.Running)
+                {
+                    _startTime = DateTime.Now;
+                }
+
                 var address = Properties.Settings.Default.COM_ADDRESS.Trim();
                 try
                 { 
@@ -191,7 +224,7 @@ namespace PressureTest
                 {
                     MessageBox.Show($"Could not open port {address}");
                 }
-            }
+            }  
             else if (state is MonitoringState.Stop)
             {
                 _plcWorker.Stop();
@@ -219,10 +252,7 @@ namespace PressureTest
         private void ResetMonitoring()
         {
             _registerDatas.Clear();
-            Logger1.Clear();
-
-            Logger1.Add(0, 0);
-            Logger1.Add(0.1, 0);
+            Logger1.Clear(); 
             _registerDatas.Add(new PLCRegisterData());
             _registerDatas.Add(new PLCRegisterData());
 
@@ -273,6 +303,7 @@ namespace PressureTest
             SaveSensorData();
             ResetMonitoring();
             ResetError();
+            isPaused = false;
         }
 
 

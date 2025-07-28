@@ -13,8 +13,8 @@ namespace PressureTest.Services
     {
         private readonly BackgroundWorker _worker;
         private readonly IModbusService _modbusService;
-        private bool _stopRequested = false;  
-
+        private bool _stopRequested = false;
+        private Random rnd = new();
         public Action<PLCRegisterData>? OnDataReceived { get; set; }
         public Action<string>? OnErrorRaised { get; set; }
 
@@ -49,7 +49,9 @@ namespace PressureTest.Services
             {
                 try
                 {
-                    var data = _modbusService.ReadRegister("D", 100, 1);
+                    var random = new Random();
+                    //var data = _modbusService.ReadRegister("D", 100, 1); 
+                    PLCRegisterData data = new("D", "100", (short)random.Next(1,100)); 
                     OnDataReceived?.Invoke(data);
 
                     await Task.Delay(100);

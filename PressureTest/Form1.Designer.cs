@@ -69,6 +69,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.White;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(DGV_Exported);
             panel1.Controls.Add(panel5);
@@ -85,7 +86,7 @@
             DGV_Exported.AllowUserToDeleteRows = false;
             DGV_Exported.AllowUserToResizeColumns = false;
             DGV_Exported.AllowUserToResizeRows = false;
-            DGV_Exported.BackgroundColor = SystemColors.Control;
+            DGV_Exported.BackgroundColor = Color.White;
             DGV_Exported.BorderStyle = BorderStyle.None;
             DGV_Exported.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             DGV_Exported.Dock = DockStyle.Bottom;
@@ -100,6 +101,7 @@
             // 
             // panel5
             // 
+            panel5.BackColor = Color.White;
             panel5.Controls.Add(button4);
             panel5.Dock = DockStyle.Bottom;
             panel5.Location = new Point(0, 862);
@@ -133,6 +135,7 @@
             // 
             // panel3
             // 
+            panel3.BackColor = Color.White;
             panel3.Controls.Add(label2);
             panel3.Controls.Add(LabelPressureValue);
             panel3.Dock = DockStyle.Top;
@@ -155,6 +158,7 @@
             // LabelPressureValue
             // 
             LabelPressureValue.AutoEllipsis = true;
+            LabelPressureValue.BackColor = Color.White;
             LabelPressureValue.BorderStyle = BorderStyle.FixedSingle;
             LabelPressureValue.Dock = DockStyle.Bottom;
             LabelPressureValue.Font = new Font("Franklin Gothic Medium", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -182,7 +186,7 @@
             // 
             LabelError.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             LabelError.BackColor = Color.White;
-            LabelError.Location = new Point(523, 946);
+            LabelError.Location = new Point(513, 946);
             LabelError.Name = "LabelError";
             LabelError.Size = new Size(1045, 60);
             LabelError.TabIndex = 4;
@@ -235,6 +239,7 @@
             // ChartSensor
             // 
             ChartSensor.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ChartSensor.BackColor = Color.White;
             ChartSensor.DisplayScale = 1F;
             ChartSensor.Location = new Point(0, 0);
             ChartSensor.Name = "ChartSensor";

@@ -1,0 +1,486 @@
+{
+  "ChartImagePath": "dcdcafb1-6620-49d4-bfc1-dd64fd7aa021.png",
+  "RegisterValues": [
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    },
+    {
+      "RegisterAddress": "D",
+      "RegisterArea": "100",
+      "RegisterValue": 100
+    }
+  ],
+  "HeaderLogo": null
+}

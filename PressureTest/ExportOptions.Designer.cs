@@ -35,6 +35,7 @@
             Txt_PropertyName_S1_1 = new TextBox();
             CB_Section_1 = new CheckBox();
             groupBox1 = new GroupBox();
+            Txt_PropertyValue_S1_3 = new DateTimePicker();
             label14 = new Label();
             Txt_PropertyName_S1_8 = new TextBox();
             label16 = new Label();
@@ -64,7 +65,6 @@
             Txt_PropertyValue_S1_2 = new TextBox();
             label3 = new Label();
             Txt_PropertyValue_S1_1 = new TextBox();
-            Txt_PropertyValue_S1_3 = new DateTimePicker();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             button1.Location = new Point(12, 567);
             button1.Name = "button1";
             button1.Size = new Size(93, 29);
-            button1.TabIndex = 0;
+            button1.TabIndex = 9;
             button1.Text = "Save";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -86,7 +86,7 @@
             Txt_Section_1_Title.Location = new Point(22, -4);
             Txt_Section_1_Title.Name = "Txt_Section_1_Title";
             Txt_Section_1_Title.Size = new Size(100, 23);
-            Txt_Section_1_Title.TabIndex = 1;
+            Txt_Section_1_Title.TabIndex = 2;
             Txt_Section_1_Title.Text = "Details";
             // 
             // label1
@@ -104,7 +104,7 @@
             Txt_PropertyName_S1_1.Name = "Txt_PropertyName_S1_1";
             Txt_PropertyName_S1_1.ReadOnly = true;
             Txt_PropertyName_S1_1.Size = new Size(152, 23);
-            Txt_PropertyName_S1_1.TabIndex = 6;
+            Txt_PropertyName_S1_1.TabIndex = 1000;
             Txt_PropertyName_S1_1.Text = "Serial Number";
             // 
             // CB_Section_1
@@ -113,7 +113,7 @@
             CB_Section_1.Location = new Point(0, 0);
             CB_Section_1.Name = "CB_Section_1";
             CB_Section_1.Size = new Size(15, 14);
-            CB_Section_1.TabIndex = 7;
+            CB_Section_1.TabIndex = 1;
             CB_Section_1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -159,6 +159,14 @@
             groupBox1.TabStop = false;
             groupBox1.Enter += groupBox1_Enter;
             // 
+            // Txt_PropertyValue_S1_3
+            // 
+            Txt_PropertyValue_S1_3.Location = new Point(167, 164);
+            Txt_PropertyValue_S1_3.Name = "Txt_PropertyValue_S1_3";
+            Txt_PropertyValue_S1_3.Size = new Size(272, 23);
+            Txt_PropertyValue_S1_3.TabIndex = 5;
+            Txt_PropertyValue_S1_3.Value = new DateTime(2025, 7, 28, 22, 51, 56, 0);
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -174,7 +182,7 @@
             Txt_PropertyName_S1_8.Name = "Txt_PropertyName_S1_8";
             Txt_PropertyName_S1_8.ReadOnly = true;
             Txt_PropertyName_S1_8.Size = new Size(152, 23);
-            Txt_PropertyName_S1_8.TabIndex = 45;
+            Txt_PropertyName_S1_8.TabIndex = 1000;
             Txt_PropertyName_S1_8.Text = "Signed By";
             // 
             // label16
@@ -191,7 +199,7 @@
             Txt_PropertyValue_S1_8.Location = new Point(164, 504);
             Txt_PropertyValue_S1_8.Name = "Txt_PropertyValue_S1_8";
             Txt_PropertyValue_S1_8.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_8.TabIndex = 44;
+            Txt_PropertyValue_S1_8.TabIndex = 8;
             // 
             // label8
             // 
@@ -208,7 +216,7 @@
             Txt_PropertyName_S1_7.Name = "Txt_PropertyName_S1_7";
             Txt_PropertyName_S1_7.ReadOnly = true;
             Txt_PropertyName_S1_7.Size = new Size(152, 23);
-            Txt_PropertyName_S1_7.TabIndex = 41;
+            Txt_PropertyName_S1_7.TabIndex = 1000;
             Txt_PropertyName_S1_7.Text = "Temperature";
             // 
             // label11
@@ -225,7 +233,9 @@
             Txt_PropertyValue_S1_7.Location = new Point(164, 375);
             Txt_PropertyValue_S1_7.Name = "Txt_PropertyValue_S1_7";
             Txt_PropertyValue_S1_7.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_7.TabIndex = 40;
+            Txt_PropertyValue_S1_7.TabIndex = 7;
+            Txt_PropertyValue_S1_7.Enter += Txt_PropertyValue_S1_7_Enter;
+            Txt_PropertyValue_S1_7.Leave += Txt_PropertyValue_S1_7_Leave;
             // 
             // label2
             // 
@@ -242,7 +252,7 @@
             Txt_PropertyName_S1_6.Name = "Txt_PropertyName_S1_6";
             Txt_PropertyName_S1_6.ReadOnly = true;
             Txt_PropertyName_S1_6.Size = new Size(152, 23);
-            Txt_PropertyName_S1_6.TabIndex = 37;
+            Txt_PropertyName_S1_6.TabIndex = 1000;
             Txt_PropertyName_S1_6.Text = "Tested By";
             // 
             // label5
@@ -259,7 +269,7 @@
             Txt_PropertyValue_S1_6.Location = new Point(164, 318);
             Txt_PropertyValue_S1_6.Name = "Txt_PropertyValue_S1_6";
             Txt_PropertyValue_S1_6.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_6.TabIndex = 36;
+            Txt_PropertyValue_S1_6.TabIndex = 6;
             // 
             // label13
             // 
@@ -276,7 +286,7 @@
             Txt_PropertyName_S1_5.Name = "Txt_PropertyName_S1_5";
             Txt_PropertyName_S1_5.ReadOnly = true;
             Txt_PropertyName_S1_5.Size = new Size(152, 23);
-            Txt_PropertyName_S1_5.TabIndex = 32;
+            Txt_PropertyName_S1_5.TabIndex = 1000;
             Txt_PropertyName_S1_5.Text = "Greatest Pressure Drop (psi)";
             // 
             // Txt_PropertyName_S1_2
@@ -285,7 +295,7 @@
             Txt_PropertyName_S1_2.Name = "Txt_PropertyName_S1_2";
             Txt_PropertyName_S1_2.ReadOnly = true;
             Txt_PropertyName_S1_2.Size = new Size(152, 23);
-            Txt_PropertyName_S1_2.TabIndex = 14;
+            Txt_PropertyName_S1_2.TabIndex = 1000;
             Txt_PropertyName_S1_2.Text = "Test Type";
             // 
             // label15
@@ -303,7 +313,7 @@
             Txt_PropertyName_S1_3.Name = "Txt_PropertyName_S1_3";
             Txt_PropertyName_S1_3.ReadOnly = true;
             Txt_PropertyName_S1_3.Size = new Size(152, 23);
-            Txt_PropertyName_S1_3.TabIndex = 20;
+            Txt_PropertyName_S1_3.TabIndex = 1000;
             Txt_PropertyName_S1_3.Text = "Test Date";
             // 
             // Txt_PropertyName_S1_4
@@ -312,15 +322,16 @@
             Txt_PropertyName_S1_4.Name = "Txt_PropertyName_S1_4";
             Txt_PropertyName_S1_4.ReadOnly = true;
             Txt_PropertyName_S1_4.Size = new Size(152, 23);
-            Txt_PropertyName_S1_4.TabIndex = 26;
+            Txt_PropertyName_S1_4.TabIndex = 1000;
             Txt_PropertyName_S1_4.Text = "Highest Pressure (psi)";
             // 
             // Txt_PropertyValue_S1_5
             // 
             Txt_PropertyValue_S1_5.Location = new Point(164, 261);
             Txt_PropertyValue_S1_5.Name = "Txt_PropertyValue_S1_5";
+            Txt_PropertyValue_S1_5.ReadOnly = true;
             Txt_PropertyValue_S1_5.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_5.TabIndex = 31;
+            Txt_PropertyValue_S1_5.TabIndex = 1000;
             // 
             // label10
             // 
@@ -344,8 +355,9 @@
             // 
             Txt_PropertyValue_S1_4.Location = new Point(164, 212);
             Txt_PropertyValue_S1_4.Name = "Txt_PropertyValue_S1_4";
+            Txt_PropertyValue_S1_4.ReadOnly = true;
             Txt_PropertyValue_S1_4.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_4.TabIndex = 25;
+            Txt_PropertyValue_S1_4.TabIndex = 1000;
             // 
             // label7
             // 
@@ -388,7 +400,7 @@
             Txt_PropertyValue_S1_2.Location = new Point(164, 117);
             Txt_PropertyValue_S1_2.Name = "Txt_PropertyValue_S1_2";
             Txt_PropertyValue_S1_2.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_2.TabIndex = 13;
+            Txt_PropertyValue_S1_2.TabIndex = 4;
             // 
             // label3
             // 
@@ -404,14 +416,7 @@
             Txt_PropertyValue_S1_1.Location = new Point(164, 69);
             Txt_PropertyValue_S1_1.Name = "Txt_PropertyValue_S1_1";
             Txt_PropertyValue_S1_1.Size = new Size(275, 23);
-            Txt_PropertyValue_S1_1.TabIndex = 8;
-            // 
-            // Txt_PropertyValue_S1_3
-            // 
-            Txt_PropertyValue_S1_3.Location = new Point(167, 164);
-            Txt_PropertyValue_S1_3.Name = "Txt_PropertyValue_S1_3";
-            Txt_PropertyValue_S1_3.Size = new Size(272, 23);
-            Txt_PropertyValue_S1_3.TabIndex = 47;
+            Txt_PropertyValue_S1_1.TabIndex = 3;
             // 
             // ExportOptions
             // 
