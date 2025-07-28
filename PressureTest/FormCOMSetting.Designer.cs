@@ -29,20 +29,58 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCOMSetting));
+            textBox1 = new TextBox();
+            label1 = new Label();
+            button1 = new Button();
             SuspendLayout();
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(12, 27);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(159, 23);
+            textBox1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 9);
+            label1.Name = "label1";
+            label1.Size = new Size(80, 15);
+            label1.TabIndex = 1;
+            label1.Text = "COM Address";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(177, 27);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Save";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // FormCOMSetting
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(374, 450);
+            ClientSize = new Size(258, 61);
+            Controls.Add(button1);
+            Controls.Add(label1);
+            Controls.Add(textBox1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormCOMSetting";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Setting";
+            Load += FormCOMSetting_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox textBox1;
+        private Label label1;
+        private Button button1;
     }
 }

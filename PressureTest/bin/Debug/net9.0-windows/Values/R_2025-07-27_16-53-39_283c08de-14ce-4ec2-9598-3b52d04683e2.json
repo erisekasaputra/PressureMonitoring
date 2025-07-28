@@ -1,0 +1,86 @@
+{
+  "ChartImagePath": "aa031a41-3678-496d-9ebc-37223fb384a7.png",
+  "RegisterValues": [
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 43
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 18
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 11
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 9
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 27
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 47
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 2
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 19
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 87
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 55
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 70
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 89
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 53
+    }
+  ],
+  "HeaderLogo": null
+}

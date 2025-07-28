@@ -14,9 +14,23 @@ namespace PressureTest.Domains
     public class ReportDocument : IDocument
     {
         private readonly ExportData _exportData;
-        public ReportDocument(ExportData exportData)
+        private string _titleSection1;
+        private string _titleSection2;
+        private List<TitleContent> _titleContentsSection1;
+        private List<TitleContent> _titleContentsSection2;
+
+        public ReportDocument(
+            ExportData exportData,
+            string titleSection1,
+            string titleSection2,
+            List<TitleContent> titleContentsSection1,
+            List<TitleContent> titleContentsSection2)
         {
             _exportData = exportData;
+            _titleSection1 = titleSection1;
+            _titleSection2 = titleSection2;
+            _titleContentsSection1 = titleContentsSection1;
+            _titleContentsSection2 = titleContentsSection2;
         }
 
         public void Compose(IDocumentContainer container)
@@ -45,23 +59,21 @@ namespace PressureTest.Domains
                 row.RelativeItem().Column(column =>
                 {
                     column.Item()
-                        .Text($"Invoice #123")
+                        .Text($"Test Certificate")
                         .FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
 
-                    column.Item().Text(text =>
-                    {
-                        text.Span("Issue date: ").SemiBold();
-                        text.Span($"123");
-                    });
-
-                    column.Item().Text(text =>
-                    {
-                        text.Span("Due date: ").SemiBold();
-                        text.Span($"123");
-                    });
+                    //column.Item().Text(text =>
+                    //{
+                    //    text.Span("Issue date: ").SemiBold();
+                    //    text.Span($"123");
+                    //}); 
                 });
 
-                row.ConstantItem(100).Height(50).Placeholder();
+                row.ConstantItem(100).Column(column =>
+                {
+                    column.Item().Height(50).Image("TAMFINDO_LOGO.jpeg").FitArea(); // Your image
+                    //column.Item().Text("Teks di bawah gambar").FontSize(8).AlignCenter(); // Your text below the image
+                });
             });
         }
 
@@ -70,102 +82,75 @@ namespace PressureTest.Domains
         {
             container.PaddingVertical(40).Column(column =>
             {
-                column.Spacing(5);
 
-                column.Item().Row(row =>
+                if (!string.IsNullOrEmpty(_titleSection1))
                 {
-                    row.RelativeItem().Component(new AddressComponent("From"));
-                    row.ConstantItem(50);
-                    row.RelativeItem().Component(new AddressComponent("For"));
-                });
+                    column.Spacing(20);
 
-                column.Item().Element(ComposeTable);
-
-                var totalPrice = 1000;
-                column.Item().AlignRight().Text($"Grand total: {totalPrice}$").FontSize(14);
-
-                if (!string.IsNullOrWhiteSpace("Koment"))
-                    column.Item().PaddingTop(25).Element(ComposeComments);
-            });
-        }
-
-
-        void ComposeTable(IContainer container)
-        {
-            container.Table(table =>
-            {
-                table.ColumnsDefinition(columns =>
-                {
-                    columns.ConstantColumn(25);
-                    columns.RelativeColumn(3);
-                    columns.RelativeColumn();
-                    columns.RelativeColumn();
-                    columns.RelativeColumn();
-                });
-
-                table.Header(header =>
-                {
-                    header.Cell().Element(CellStyle).Text("#");
-                    header.Cell().Element(CellStyle).Text("Product");
-                    header.Cell().Element(CellStyle).AlignRight().Text("Unit price");
-                    header.Cell().Element(CellStyle).AlignRight().Text("Quantity");
-                    header.Cell().Element(CellStyle).AlignRight().Text("Total");
-
-                    static IContainer CellStyle(IContainer container)
+                    column.Item().Row(row =>
                     {
-                        return container.DefaultTextStyle(x => x.SemiBold()).PaddingVertical(5).BorderBottom(1).BorderColor(Colors.Black);
-                    }
-                });
-
-                for (int i = 0; i < 10; i ++)
-                {
-                    table.Cell().Element(CellStyle).Text((i + 1).ToString());
-                    table.Cell().Element(CellStyle).Text("Eris");
-                    table.Cell().Element(CellStyle).AlignRight().Text($"1000$");
-                    table.Cell().Element(CellStyle).AlignRight().Text(10.ToString());
-                    table.Cell().Element(CellStyle).AlignRight().Text($"1000$");
-
-                    static IContainer CellStyle(IContainer container)
-                    {
-                        return container.BorderBottom(1).BorderColor(Colors.Grey.Lighten2).PaddingVertical(5);
-                    }
+                        row.RelativeItem().Component(new AddressComponent(_titleSection1, [.. _titleContentsSection1]));
+                    });
                 }
+
+                if (!string.IsNullOrEmpty(_titleSection2))
+                {
+                    column.Spacing(20);
+
+                    column.Item().Row(row =>
+                    {
+                        row.RelativeItem().Component(new AddressComponent(_titleSection2, [.. _titleContentsSection2]));
+                    });
+                }  
+
+                column.Item().Element(ComposeImageContent); 
             });
         }
 
-        void ComposeComments(IContainer container)
+        void ComposeImageContent(IContainer container)
         {
-            container.Background(Colors.Grey.Lighten3).Padding(10).Column(column =>
-            {
-                column.Spacing(5);
-                column.Item().Text("Comments").FontSize(14);
-                column.Item().Text("Coment");
-            });
-        }
+            container
+               .AlignCenter() // Center the content horizontally
+               .AlignMiddle()  // Center the content vertically (optional, depends on overall layout)
+               .Image(Path.Combine("Plots", _exportData.ChartImagePath)) // Replace with your actual image path
+               .FitWidth();
+        } 
     }
 
     public class AddressComponent : IComponent
     {
         private string Title { get; }
+        private TitleContent[] TitleContents { get; set; } 
 
-        public AddressComponent(string title)
+        public AddressComponent(string title, params TitleContent[] titleContents)
         {
             Title = title;
+            TitleContents = titleContents; 
         }
 
         public void Compose(IContainer container)
-        {
+        { 
+            if (string.IsNullOrEmpty(Title))
+            {
+                return;
+            }
+
             container.Column(column =>
             {
-                column.Spacing(2);
+                if (TitleContents.Length > 0) 
+                {
+                    column.Spacing(2);
 
-                column.Item().BorderBottom(1).PaddingBottom(5).Text(Title).SemiBold();
+                    column.Item().BorderBottom(1).PaddingBottom(5).Text(Title).SemiBold();
 
-                column.Item().Text("COMPANY NAME");
-                column.Item().Text("STREET");
-                column.Item().Text($"Bekasi");
-                column.Item().Text("Email");
-                column.Item().Text("Phoe");
+                    foreach(var content in TitleContents)
+                    {
+                        if (!string.IsNullOrEmpty(content.Title.Trim()))
+                        {
+                            column.Item().Text($"{content.Title.Trim()}: {content.Content}");
+                        }    
+                    } 
+                }
             });
         }
     }

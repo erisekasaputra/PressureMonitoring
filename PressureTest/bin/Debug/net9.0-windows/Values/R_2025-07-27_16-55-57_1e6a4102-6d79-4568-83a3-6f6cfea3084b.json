@@ -1,0 +1,46 @@
+{
+  "ChartImagePath": "f4e323b9-e07e-44e3-b8fb-7cf804de5b86.png",
+  "RegisterValues": [
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "",
+      "RegisterArea": "",
+      "RegisterValue": 0
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 54
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 38
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 40
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 27
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 45
+    },
+    {
+      "RegisterAddress": "40001",
+      "RegisterArea": "HoldingRegister",
+      "RegisterValue": 63
+    }
+  ],
+  "HeaderLogo": null
+}

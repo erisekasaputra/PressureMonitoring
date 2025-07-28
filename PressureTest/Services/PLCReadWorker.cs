@@ -16,6 +16,7 @@ namespace PressureTest.Services
         private bool _stopRequested = false;  
 
         public Action<PLCRegisterData>? OnDataReceived { get; set; }
+        public Action<string>? OnErrorRaised { get; set; }
 
         public PLCReadWorker(IModbusService modbusService)
         {
@@ -46,12 +47,18 @@ namespace PressureTest.Services
         {
             while (!_stopRequested)
             {
-                //var data = await _modbusService.ReadRegister(0, "D", 0, 1);
-                PLCRegisterData data = _modbusService.ReadRegister();
-                OnDataReceived?.Invoke(data); 
+                try
+                {
+                    var data = _modbusService.ReadRegister("D", 100, 1);
+                    OnDataReceived?.Invoke(data);
 
-                await Task.Delay(100);
+                    await Task.Delay(100);
+                }
+                catch (IOException ex)
+                {
+                    OnErrorRaised?.Invoke(ex.Message);
+                }
             }
-        }
+        } 
     }
 }

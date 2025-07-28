@@ -10,9 +10,11 @@ namespace PressureTest.Services.Interfaces
 {
     public interface IModbusService
     {
-        void Configure(string comPort, int baudRate, Parity parity, int dataBits, StopBits stopBits, byte slaveId);
+        void Pause();
+        void Stop();
+        void Configure(string comPort, int baudRate, Parity parity, int dataBits, StopBits stopBits);
         short[] ReadHoldingRegisters(byte func, ushort startAddress, ushort count);
         PLCRegisterData ReadRegister();
-        Task<PLCRegisterData> ReadRegister(int station, string area, int address, int wordCount);
+        PLCRegisterData ReadRegister(string area, int address, int wordCount);
     }
 }
