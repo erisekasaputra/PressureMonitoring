@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PressureTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66c7d389365678133b72c30b15a6cb8aba5fa5e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+062b74bada1b33aa3e223e27fbfa6e8641c21411")]
 [assembly: System.Reflection.AssemblyProductAttribute("PressureTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PressureTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

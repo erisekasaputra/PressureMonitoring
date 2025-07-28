@@ -18,19 +18,22 @@ namespace PressureTest.Domains
         private string _titleSection2;
         private List<TitleContent> _titleContentsSection1;
         private List<TitleContent> _titleContentsSection2;
+        private string _signed;
 
         public ReportDocument(
             ExportData exportData,
             string titleSection1,
             string titleSection2,
             List<TitleContent> titleContentsSection1,
-            List<TitleContent> titleContentsSection2)
+            List<TitleContent> titleContentsSection2,
+            string signed)
         {
             _exportData = exportData;
             _titleSection1 = titleSection1;
             _titleSection2 = titleSection2;
             _titleContentsSection1 = titleContentsSection1;
             _titleContentsSection2 = titleContentsSection2;
+            _signed = signed;
         }
 
         public void Compose(IDocumentContainer container)
@@ -55,24 +58,27 @@ namespace PressureTest.Domains
         void ComposeHeader(IContainer container)
         {
             container.Row(row =>
-            {
+            { 
+                // LOGO di kiri (tetap ukurannya fixed)
+                row.ConstantItem(150).Column(column =>
+                {
+                    column.Item().Height(50).Image("TAMFINDO_LOGO.jpeg").FitArea();
+
+                    column.Item().Text("PT. Tamfindo Mitra Mandiri").FontSize(9);
+
+                    column.Item().Text("https://www.infotamfindo.com/")
+                        .FontSize(9)
+                        .FontColor(Colors.Blue.Medium)
+                        .Underline();
+                });
+
+                // TITLE di kanan (fleksibel)
                 row.RelativeItem().Column(column =>
                 {
                     column.Item()
-                        .Text($"Test Certificate")
-                        .FontSize(20).SemiBold().FontColor(Colors.Blue.Medium);
-
-                    //column.Item().Text(text =>
-                    //{
-                    //    text.Span("Issue date: ").SemiBold();
-                    //    text.Span($"123");
-                    //}); 
-                });
-
-                row.ConstantItem(100).Column(column =>
-                {
-                    column.Item().Height(50).Image("TAMFINDO_LOGO.jpeg").FitArea(); // Your image
-                    //column.Item().Text("Teks di bawah gambar").FontSize(8).AlignCenter(); // Your text below the image
+                        .AlignRight() // agar teks rata kanan
+                        .Text($"Chart Record Test")
+                        .FontSize(20).SemiBold().FontColor(Colors.Blue.Medium); 
                 });
             });
         }
@@ -103,7 +109,19 @@ namespace PressureTest.Domains
                     });
                 }  
 
-                column.Item().Element(ComposeImageContent); 
+                column.Item().Element(ComposeImageContent);
+
+
+                column.Item().PaddingTop(30).Element(ComposeSignature);
+            });
+        }
+
+        void ComposeSignature(IContainer container)
+        {
+            container.AlignRight().Width(200).Column(column =>
+            {
+                column.Item().BorderBottom(1).Height(20); // garis tanda tangan tanpa ExtendVertical()
+                column.Item().Text($"Signed : {_signed}").FontSize(10).AlignCenter(); // nama
             });
         }
 

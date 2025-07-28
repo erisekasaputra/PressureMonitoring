@@ -27,8 +27,7 @@ namespace PressureTest
         private readonly string targetFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Values");
 
         private bool _hasError = false;
-        private string _errorMessage = string.Empty;
-
+        private string _errorMessage = string.Empty; 
 
         public Form1(IPLCReadWorker plcWorker, IModbusService modbusService)
         {
@@ -42,8 +41,8 @@ namespace PressureTest
             _plcWorker.Stop();
             SetStateMonitoring(MonitoringState.Default);
 
-            ChartSensor.Plot.XLabel("Time (Milliseconds)");
-            ChartSensor.Plot.YLabel("Pressure (Bar)");
+            ChartSensor.Plot.XLabel("Time (Minutes)");
+            ChartSensor.Plot.YLabel("Pressure (psi)");
             ChartSensor.Refresh();
 
             // disable interactivity by default
@@ -83,12 +82,13 @@ namespace PressureTest
                 {
                     Invoke(new Action(() => OnPLCDataReceived(data)));
                     return;
-                } 
+                }
 
-                double value = ConvertFromPsiToBar(data.RegisterValue);  
-                Logger1.Add(value);
+                double elapsedMinutes = (DateTime.Now - _startTime).TotalMilliseconds / 60000.0;
+                double value = data.RegisterValue;
+                Logger1.Add(elapsedMinutes, value);
                 _registerDatas.Add(data);
-                LabelPressureValue.Text = $"{value:F2} Bar";
+                LabelPressureValue.Text = $"{value:F2} psi";
 
                 ResetError();
             }
@@ -161,6 +161,7 @@ namespace PressureTest
 
             if (state is MonitoringState.Running)
             {
+                _startTime = DateTime.Now;
                 var address = Properties.Settings.Default.COM_ADDRESS.Trim();
                 try
                 { 
@@ -171,7 +172,6 @@ namespace PressureTest
                         return;
                     }
 
-                    _startTime = DateTime.Now;
                     _modbusService.Configure(address, 38400, Parity.Even, 7, StopBits.One);
                     _plcWorker.Start();
 
@@ -221,12 +221,12 @@ namespace PressureTest
             _registerDatas.Clear();
             Logger1.Clear();
 
-            Logger1.Add(0);
-            Logger1.Add(0);
+            Logger1.Add(0, 0);
+            Logger1.Add(0.1, 0);
             _registerDatas.Add(new PLCRegisterData());
             _registerDatas.Add(new PLCRegisterData());
 
-            LabelPressureValue.Text = "0 Bar";
+            LabelPressureValue.Text = "0 psi";
 
             ChartSensor.Refresh();
         }

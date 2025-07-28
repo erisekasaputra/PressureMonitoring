@@ -21,19 +21,42 @@ namespace PressureTest
 
         private ExportData? _exportData { get; set; }
 
+        private double GetMaxPressureDrop(List<PLCRegisterData> registerValues)
+        {
+            if (registerValues.Count < 2)
+                return 0;
+
+            double maxDrop = 0;
+
+            for (int i = 1; i < registerValues.Count; i++)
+            {
+                double prevBar = registerValues[i - 1].RegisterValue;
+                double currBar = registerValues[i].RegisterValue;
+
+                double drop = prevBar - currBar;
+
+                if (drop >= 0 && drop > maxDrop)
+                {
+                    maxDrop = drop;
+                }
+            }
+
+            return maxDrop;
+        }
+
         public ExportOptions(string fileName)
         {
             InitializeComponent();
 
             var filePath = Path.Combine(_valuesFolder, fileName);
-            if (File.Exists(filePath)) 
-            { 
+            if (File.Exists(filePath))
+            {
                 string jsonString = File.ReadAllText(filePath);
 
                 try
                 {
                     var exportData = JsonSerializer.Deserialize<ExportData>(jsonString);
-                
+
                     if (exportData is null)
                     {
                         this.Close();
@@ -43,9 +66,14 @@ namespace PressureTest
 
                     _exportData = exportData;
 
+
+
+                    Txt_PropertyValue_S1_4.Text = $"{exportData.RegisterValues.Max(d => d.RegisterValue)} psi";
+                    Txt_PropertyValue_S1_5.Text = $"{GetMaxPressureDrop(exportData.RegisterValues)} psi";
+
                 }
-                catch (Exception) 
-                { 
+                catch (Exception)
+                {
                     this.Close();
                     MessageBox.Show("Invalid data format", "Warning");
                     return;
@@ -74,11 +102,6 @@ namespace PressureTest
                 return;
             }
 
-            if (CB_Section_2.Checked == true && string.IsNullOrEmpty(Txt_Section_2_Title.Text))
-            {
-                MessageBox.Show("Title section 2 could not be empty if you choose to activate it", "Information");
-                return;
-            }
 
 
 
@@ -86,53 +109,52 @@ namespace PressureTest
             var listTileSection2 = new List<TitleContent>();
 
 
-            for(int h=1; h <= 2; h++)
+            for (int h = 1; h <= 1; h++)
             {
-                for (int i = 1; i <= 5; i++)
+                for (int i = 1; i <= 7; i++)
                 {
-                    var nameTb = this.Controls.Find($"Txt_PropertyName_S{h}_{i}", true)
-                                      .OfType<TextBox>()
-                                      .FirstOrDefault();
-                    var valueTb = this.Controls.Find($"Txt_PropertyValue_S{h}_{i}", true)
-                                       .OfType<TextBox>()
-                                       .FirstOrDefault();
+                    var nameControl = this.Controls.Find($"Txt_PropertyName_S{h}_{i}", true).FirstOrDefault();
+                    var valueControl = this.Controls.Find($"Txt_PropertyValue_S{h}_{i}", true).FirstOrDefault();
 
-                    if (nameTb != null && valueTb != null &&
-                        !string.IsNullOrWhiteSpace(nameTb.Text))
+                    if (nameControl != null && valueControl != null)
                     {
-                        if (h == 1)
-                            listTileSection1.Add(new(nameTb.Text.Trim(), valueTb.Text.Trim()));
-                        else if (h == 2)
-                            listTileSection2.Add(new(nameTb.Text.Trim(), valueTb.Text.Trim()));
+                        string name = string.Empty;
+                        string value = string.Empty;
+
+                        // Ambil nama dari TextBox saja
+                        if (nameControl is TextBox nameTb && !string.IsNullOrWhiteSpace(nameTb.Text))
+                        {
+                            name = nameTb.Text.Trim();
+
+                            // Value bisa dari TextBox atau DateTimePicker
+                            if (valueControl is TextBox valueTb)
+                            {
+                                value = valueTb.Text.Trim();
+                            }
+                            else if (valueControl is DateTimePicker dtPicker)
+                            {
+                                value = dtPicker.Value.ToString("dddd, dd MMMM yyyy HH:mm:ss");
+                            }
+
+                            if (h == 1)
+                                listTileSection1.Add(new TitleContent(name, value));
+                            else if (h == 2)
+                                listTileSection2.Add(new TitleContent(name, value));
+                        }
                     }
                 }
             }
-            
 
-
-            if (string.IsNullOrEmpty(Txt_PropertyName_S1_1.Text.Trim()))
-            {
-                listTileSection1.Add(new(Txt_PropertyName_S1_1.Text.Trim(), Txt_PropertyValue_S1_1.Text.Trim()));
-            }
-
-            if (string.IsNullOrEmpty(Txt_PropertyName_S1_2.Text.Trim()))
-            {
-                listTileSection1.Add(new(Txt_PropertyName_S1_2.Text.Trim(), Txt_PropertyValue_S1_2.Text.Trim()));
-            }
-
-            if (string.IsNullOrEmpty(Txt_PropertyName_S1_3.Text.Trim()))
-            {
-                listTileSection1.Add(new(Txt_PropertyName_S1_3.Text.Trim(), Txt_PropertyValue_S1_3.Text.Trim()));
-            }
-
+             
 
 
             var document = new ReportDocument(
                 _exportData,
                 Txt_Section_1_Title.Text,
-                Txt_Section_2_Title.Text,
+                string.Empty,
                 listTileSection1,
-                listTileSection2);
+                listTileSection2,
+                Txt_PropertyValue_S1_8.Text.Trim());
 
             using SaveFileDialog saveFileDialog = new();
 
@@ -183,6 +205,16 @@ namespace PressureTest
                     MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExportOptions_Load(object sender, EventArgs e)
+        {
+            CB_Section_1.Checked = true;
         }
     }
 }

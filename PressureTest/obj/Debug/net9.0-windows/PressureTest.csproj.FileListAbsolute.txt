@@ -267,3 +267,8 @@ C:\Users\ADMIN\Documents\Pressure Test\Desktop\PressureMonitoring\PressureTest\b
 C:\Users\ADMIN\Documents\Pressure Test\Desktop\PressureMonitoring\PressureTest\bin\Debug\net9.0-windows\PressureTest.dll.config
 C:\Users\ADMIN\Documents\Pressure Test\Desktop\PressureMonitoring\PressureTest\bin\Debug\net9.0-windows\HslCommunication.dll
 C:\Users\ADMIN\Documents\Pressure Test\Desktop\PressureMonitoring\PressureTest\bin\Debug\net9.0-windows\Newtonsoft.Json.dll
+C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\TAMFINDO_LOGO.jpeg
+C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\PressureTest.dll.config
+C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\HslCommunication.dll
+C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\Newtonsoft.Json.dll
+C:\Users\erise\Documents\Projects\PressureTest\PressureTest\obj\Debug\net9.0-windows\PressureTest.sourcelink.json

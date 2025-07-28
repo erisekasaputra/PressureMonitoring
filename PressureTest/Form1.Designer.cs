@@ -39,6 +39,7 @@
             label2 = new Label();
             LabelPressureValue = new Label();
             panel4 = new Panel();
+            LabelError = new Label();
             button2 = new Button();
             button3 = new Button();
             button1 = new Button();
@@ -46,7 +47,6 @@
             menuStrip1 = new MenuStrip();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             cOMSettingToolStripMenuItem = new ToolStripMenuItem();
-            LabelError = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DGV_Exported).BeginInit();
@@ -162,7 +162,7 @@
             LabelPressureValue.Name = "LabelPressureValue";
             LabelPressureValue.Size = new Size(323, 67);
             LabelPressureValue.TabIndex = 7;
-            LabelPressureValue.Text = "0 Bar";
+            LabelPressureValue.Text = "0 psi";
             LabelPressureValue.TextAlign = ContentAlignment.BottomCenter;
             // 
             // panel4
@@ -177,6 +177,15 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(1581, 1017);
             panel4.TabIndex = 13;
+            // 
+            // LabelError
+            // 
+            LabelError.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            LabelError.BackColor = Color.White;
+            LabelError.Location = new Point(523, 946);
+            LabelError.Name = "LabelError";
+            LabelError.Size = new Size(1045, 60);
+            LabelError.TabIndex = 4;
             // 
             // button2
             // 
@@ -254,15 +263,6 @@
             cOMSettingToolStripMenuItem.Size = new Size(142, 22);
             cOMSettingToolStripMenuItem.Text = "COM Setting";
             cOMSettingToolStripMenuItem.Click += cOMSettingToolStripMenuItem_Click;
-            // 
-            // LabelError
-            // 
-            LabelError.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            LabelError.BackColor = Color.White;
-            LabelError.Location = new Point(523, 946);
-            LabelError.Name = "LabelError";
-            LabelError.Size = new Size(1045, 60);
-            LabelError.TabIndex = 4;
             // 
             // Form1
             // 
