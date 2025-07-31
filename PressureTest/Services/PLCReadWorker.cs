@@ -50,8 +50,8 @@ namespace PressureTest.Services
                 try
                 {
                     var random = new Random();
-                    //var data = _modbusService.ReadRegister("D", 100, 1); 
-                    PLCRegisterData data = new("D", "100", (short)random.Next(1,100)); 
+                    var data = await _modbusService.ReadRegister("D", 100, 1); 
+                    //PLCRegisterData data = new("D", "100", (short)random.Next(1,100)); 
                     OnDataReceived?.Invoke(data);
 
                     await Task.Delay(100);

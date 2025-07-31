@@ -1,35 +1,28 @@
-﻿using HslCommunication.ModBus;
-using HslCommunication.Profinet.Melsec;
+﻿using FluentModbus; 
 using PressureTest.Domains;
 using PressureTest.Services.Interfaces;
-using System.IO.Ports; 
+using System.IO.Ports;
+using System.Net;
 
 namespace PressureTest.Services
 {
     internal class ModbusService : IModbusService
     {
-        private readonly MelsecFxSerial _modbus; 
-
+        private readonly ModbusRtuClient _modbus;
+        private static string comport = string.Empty;
+         
         public ModbusService()
         {
-            _modbus = new MelsecFxSerial(); // default station 1
+            _modbus = new(); // default station 1
         }
 
         public void Configure(string comPort, int baudRate, Parity parity, int dataBits, StopBits stopBits)
-        {  
-            _modbus.SerialPortInni(sp =>
-            {
-                sp.PortName = comPort;
-                sp.BaudRate = baudRate;
-                sp.DataBits = dataBits;
-                sp.Parity = parity;
-                sp.StopBits = stopBits;
-            });
-
-            if (!_modbus.IsOpen())
-            {
-                _modbus.Open();
-            }
+        {
+            comport = comPort;
+            _modbus.BaudRate = baudRate;
+            _modbus.Parity = parity;
+            _modbus.StopBits = stopBits; 
+            _modbus.Connect(comPort, ModbusEndianness.BigEndian); 
         }
 
         /// <summary>
@@ -104,7 +97,7 @@ namespace PressureTest.Services
                 return;
             }
 
-            if (!_modbus.IsOpen())
+            if (!_modbus.IsConnected)
             {
                 return;
             }
@@ -119,7 +112,7 @@ namespace PressureTest.Services
                 return;
             }
 
-            _modbus.Close(); 
+            _modbus.Close();
         }
 
         /// <summary>
@@ -134,29 +127,96 @@ namespace PressureTest.Services
         /// <param name="wordCount"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
-        public PLCRegisterData ReadRegister(string area, int address, int wordCount)
+        public async Task<PLCRegisterData> ReadRegister(string area, int address, int wordCount)
         {
             if (_modbus == null)
                 throw new InvalidOperationException("Serial port is not configured.");
 
-            if (!_modbus.IsOpen())
-            {
-                _modbus.Open();
+            if (!_modbus.IsConnected)
+            { 
+                _modbus.Connect(comport); 
             }
 
-            if (!_modbus.IsOpen()) 
+            if (!_modbus.IsConnected) 
             {
                 throw new IOException("Serial port has not been open");
+            } 
+
+            var result = await _modbus.ReadHoldingRegistersAsync(1, (ushort)522, 4);
+
+            var span = result.Span;
+
+             
+            ushort resulttotal = (ushort)((span[0] << 8) | span[1]);
+
+            if (resulttotal < 0)
+            { 
+                resulttotal = 0;
             }
-
-            short d100 = _modbus.ReadInt16($"{area}{address}").Content;
-
+             
+             
             return new PLCRegisterData
             {
                 RegisterAddress = $"{area}{address}",
                 RegisterArea = area,
-                RegisterValue = d100
+                RegisterValue =(short)resulttotal
             };
-        }     
+        }
+
+        public static float ConvertToFloat(Span<ushort> span, int startIndex = 0, ModbusEndian mode = ModbusEndian.BigEndian)
+        {
+            ushort reg1 = span[startIndex];
+            ushort reg2 = span[startIndex + 1];
+
+            byte[] bytes = new byte[4];
+
+            switch (mode)
+            {
+                case ModbusEndian.BigEndian:
+                    bytes[0] = (byte)(reg1 >> 8);
+                    bytes[1] = (byte)(reg1 & 0xFF);
+                    bytes[2] = (byte)(reg2 >> 8);
+                    bytes[3] = (byte)(reg2 & 0xFF);
+                    break;
+
+                case ModbusEndian.LittleEndian:
+                    bytes[0] = (byte)(reg2 & 0xFF);
+                    bytes[1] = (byte)(reg2 >> 8);
+                    bytes[2] = (byte)(reg1 & 0xFF);
+                    bytes[3] = (byte)(reg1 >> 8);
+                    break;
+
+                case ModbusEndian.WordSwap:
+                    bytes[0] = (byte)(reg2 >> 8);
+                    bytes[1] = (byte)(reg2 & 0xFF);
+                    bytes[2] = (byte)(reg1 >> 8);
+                    bytes[3] = (byte)(reg1 & 0xFF);
+                    break;
+
+                case ModbusEndian.ByteWordSwap:
+                    bytes[0] = (byte)(reg1 & 0xFF);
+                    bytes[1] = (byte)(reg1 >> 8);
+                    bytes[2] = (byte)(reg2 & 0xFF);
+                    bytes[3] = (byte)(reg2 >> 8);
+                    break;
+            }
+
+            return BitConverter.ToSingle(bytes, 0);
+        }
     }
+
+    
+    
+    public enum ModbusEndian
+    {
+        BigEndian,          // 12 34 56 78
+        LittleEndian,       // 78 56 34 12
+        WordSwap,           // 56 78 12 34
+        ByteWordSwap        // 34 12 78 56
+    }
+
 }
+
+
+
+

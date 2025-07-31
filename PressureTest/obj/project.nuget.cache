@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "U6gWhVb6Fj0=",
+  "dgSpecHash": "kiMGhakgn/U=",
   "success": true,
   "projectFilePath": "C:\\Users\\erise\\Documents\\Projects\\PressureTest\\PressureTest\\PressureTest.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\erise\\.nuget\\packages\\fluentmodbus\\5.3.2\\fluentmodbus.5.3.2.nupkg.sha512",
     "C:\\Users\\erise\\.nuget\\packages\\harfbuzzsharp\\7.3.0.3\\harfbuzzsharp.7.3.0.3.nupkg.sha512",
     "C:\\Users\\erise\\.nuget\\packages\\harfbuzzsharp.nativeassets.linux\\7.3.0.3\\harfbuzzsharp.nativeassets.linux.7.3.0.3.nupkg.sha512",
     "C:\\Users\\erise\\.nuget\\packages\\harfbuzzsharp.nativeassets.macos\\7.3.0.3\\harfbuzzsharp.nativeassets.macos.7.3.0.3.nupkg.sha512",
@@ -50,6 +51,7 @@
     "C:\\Users\\erise\\.nuget\\packages\\skiasharp.views.windowsforms\\2.88.9\\skiasharp.views.windowsforms.2.88.9.nupkg.sha512",
     "C:\\Users\\erise\\.nuget\\packages\\system.drawing.common\\9.0.7\\system.drawing.common.9.0.7.nupkg.sha512",
     "C:\\Users\\erise\\.nuget\\packages\\system.io.ports\\9.0.7\\system.io.ports.9.0.7.nupkg.sha512",
+    "C:\\Users\\erise\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
     "C:\\Users\\erise\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
   ],
   "logs": [

@@ -272,3 +272,4 @@ C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-win
 C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\HslCommunication.dll
 C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\Newtonsoft.Json.dll
 C:\Users\erise\Documents\Projects\PressureTest\PressureTest\obj\Debug\net9.0-windows\PressureTest.sourcelink.json
+C:\Users\erise\Documents\Projects\PressureTest\PressureTest\bin\Debug\net9.0-windows\FluentModbus.dll

@@ -15,6 +15,6 @@ namespace PressureTest.Services.Interfaces
         void Configure(string comPort, int baudRate, Parity parity, int dataBits, StopBits stopBits);
         short[] ReadHoldingRegisters(byte func, ushort startAddress, ushort count);
         PLCRegisterData ReadRegister();
-        PLCRegisterData ReadRegister(string area, int address, int wordCount);
+        Task<PLCRegisterData> ReadRegister(string area, int address, int wordCount);
     }
 }

@@ -205,7 +205,7 @@ namespace PressureTest
                         return;
                     }
 
-                    _modbusService.Configure(address, 38400, Parity.Even, 7, StopBits.One);
+                    _modbusService.Configure(address, 19200, Parity.None, 8, StopBits.Two);
                     _plcWorker.Start();
 
                     button1.Enabled = false;
